@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dinner Invitation</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+      background-color: #87CEEB; /* Light sky blue background color */
+    }
+
+    h1 {
+      color: white; /* Set h1 color to white */
+    }
+
+    button {
+      font-size: 16px;
+      padding: 10px 20px;
+      margin: 10px;
+      cursor: pointer;
+    }
+
+    #noButton {
+      order: 2;
+    }
+
+    #response {
+      margin-top: 20px;
+    }
+
+    .floating {
+      position: fixed;
+    }
+
+    @media (max-width: 600px) {
+      /* Adjust styles for screens with a maximum width of 600 pixels */
+      h1 {
+        font-size: 24px;
+      }
+      button {
+        font-size: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Saturday night Matar Paneer at my home? 🥺</h1>
+
+  <button id="yesButton" onclick="showEmoji('💃', '😊')">Yes</button>
+  <button id="noButton" onclick="changeButtonPosition()">No</button>
+
+  <div id="response"></div>
+
+  <script>
+    let noButtonClicked = false;
+
+    function showEmoji(danceEmoji, happyEmoji) {
+      document.getElementById('response').innerHTML = `<p>Great! See ya sona!${danceEmoji} ${happyEmoji}</p>`;
+    }
+
+    function changeButtonPosition() {
+      const noButton = document.getElementById('noButton');
+
+      if (!noButtonClicked) {
+        // For the first click, show a message and don't move the button
+        document.getElementById('response').innerHTML = "<p>Sorry Sona, but this is not allowed 🥺</p>";
+
+        // Disable further clicks on the button
+        noButtonClicked = true;
+      } else {
+        // For subsequent clicks, move the button to a random place
+        noButton.classList.remove('floating');
+        // Adjust the range for random positioning based on window dimensions
+        noButton.style.bottom = `${Math.floor(Math.random() * (window.innerHeight - 40))}px`;
+        noButton.style.left = `${Math.floor(Math.random() * (window.innerWidth - 100))}px`;
+        noButton.classList.add('floating');
+      }
+    }
+  </script>
+
+</body>
+</html>
